@@ -53,6 +53,14 @@ If browser automation is available, each assessment creates its own new tab. Nev
 
 Read relevant source files and visually inspect the live page when browser automation is available. Think like a design director.
 
+Begin with the flow model. Do not start with individual screens:
+- Identify the primary object being operated on in every state. Record where the object changes, branches, or becomes ambiguous.
+- Identify every available action in each state and the actual effect of that action, including scope, side effects, reversibility, destination, and any new object or state it creates.
+- Trace object continuity through the complete flow. The user should always know what they are acting on, what has changed, and what remains unchanged.
+- Treat unclear object identity, misleading action effects, lost context, and dead-end transitions as flow failures even when each screen is visually polished.
+
+Only after the flow model is clear, evaluate whether hierarchy and interactions support it. Hierarchy must establish the current object before its attributes, explanations, or secondary controls. Interactions must preserve context across navigation, asynchronous work, interruption, cancellation, failure, recovery, and re-entry.
+
 Evaluate:
 - **Design specificity**: Is the composition, interaction, and visual language grounded in this product, or could an unrelated product use it unchanged? Make this judgment before seeing detector output.
 - **Holistic design**: hierarchy, IA, emotional fit, discoverability, composition, typography, color, accessibility, states, copy, and edge cases.
@@ -60,7 +68,7 @@ Evaluate:
 - **Emotional journey**: peak-end rule, emotional valleys, reassurance at high-stakes moments.
 - **Nielsen heuristics**: consult the [Heuristics Scoring Guide](#heuristics-scoring-guide) section below; score all 10 heuristics 0-4, marking any heuristic the mode-applicability rule allows as `n/a` instead of forcing a number.
 
-Return: design-specificity verdict, heuristic scores, cognitive load, emotional journey, 2-3 strengths, 3-5 priority issues, persona red flags, minor observations, and provocative questions.
+Return the object-and-action model first, followed by object continuity failures, hierarchy and interaction findings, design-specificity verdict, heuristic scores, cognitive load, emotional journey, 2-3 strengths, 3-5 priority issues, persona red flags, minor observations, and provocative questions.
 
 ### Assessment B: Detector + Browser Evidence
 
@@ -114,6 +122,16 @@ Structure your feedback as a design director would:
 The report's first line MUST declare how the assessments were run, so a degraded run is never silent:
 - Dual-agent: `Method: dual-agent (A: <agent-id> · B: <agent-id>)`
 - Degraded: `⚠️ DEGRADED: single-context (<reason, e.g. no sub-agent tool exposed>)`
+
+#### Object and Action Model
+
+Start the critique with the product flow, not the appearance of its screens. State:
+- The primary object in each state and every point where that object changes.
+- The actions available in each state and the real effect of each action.
+- Whether object identity, scope, state, and consequences remain clear across transitions.
+- Any discontinuity, ambiguity, hidden side effect, dead end, or recovery gap that weakens the flow.
+
+Then explain whether the design hierarchy establishes the current object before its properties and controls, and whether interactions preserve that hierarchy through every state. This section must describe the complete flow rather than treating each screen as an isolated composition.
 
 #### Design Health Score
 > *Consult the [Heuristics Scoring Guide](#heuristics-scoring-guide) section below.*
